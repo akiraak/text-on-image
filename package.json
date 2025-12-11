@@ -5,7 +5,7 @@
   "main": "index.js",
 
   "bin": {
-    "text-on-image": "./text-on-image.js"
+    "text-on-image": "./index.js"
   },
 
   "scripts": {
