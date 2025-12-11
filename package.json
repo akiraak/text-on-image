@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "画像に文字を合成する",
   "main": "index.js",
+
+  "bin": {
+    "text-on-image": "./text-on-image.js"
+  },
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
