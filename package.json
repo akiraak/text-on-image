@@ -1,0 +1,23 @@
+{
+  "name": "text-on-image",
+  "version": "1.0.0",
+  "description": "画像に文字を合成する",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akiraak/text-on-image.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akiraak/text-on-image/issues"
+  },
+  "homepage": "https://github.com/akiraak/text-on-image#readme",
+  "dependencies": {
+    "commander": "^14.0.2"
+  }
+}
