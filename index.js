@@ -20,7 +20,7 @@ const CONSTANTS = {
         FILL: "#111111",
         STROKE: "#cccccc",
         STROKE_WIDTH: 20,
-        POS: "-520+172" // North基準
+        POS: "-520+172"
     },
     // タイトル
     TITLE: {
@@ -29,8 +29,8 @@ const CONSTANTS = {
         STROKE: "#40210f",
         STROKE_WIDTH: 26,
         POS_X: -520,
-        POS_Y: 320, // North基準
-        LINE_SPACING: -30
+        POS_Y: 320,
+        LINE_SPACING: -30 // デフォルト行間
     },
     // サムネイルキャプション
     THUMB_CAPTION: {
@@ -38,7 +38,7 @@ const CONSTANTS = {
         FILL: "#000000",
         STROKE: "#cccccc",
         STROKE_WIDTH: 20,
-        POS: "-520+1888" // North基準 (下部)
+        POS: "-520+1888"
     },
     // 埋め込み画像 (Thumb)
     EMBED: {
@@ -101,7 +101,6 @@ async function createTextImage(options, outputPath) {
 
         // 1. ヘッダー
         if (options.header) {
-            // オプション指定があれば優先、なければデフォルト
             const size = options.headerSize || CONSTANTS.HEADER.SIZE;
             const fill = options.headerColor || CONSTANTS.HEADER.FILL;
 
@@ -123,13 +122,17 @@ async function createTextImage(options, outputPath) {
             const fill = options.titleColor || CONSTANTS.TITLE.FILL;
             const titlePos = formatTitlePos(CONSTANTS.TITLE.POS_X, CONSTANTS.TITLE.POS_Y, parseInt(options.titleOffsetY));
             
+            // ★変更: 行間設定を取得 (指定がなければデフォルト)
+            const lineSpacing = options.titleLineSpacing || CONSTANTS.TITLE.LINE_SPACING;
+
             cmdParts.push(
                 fontOption,
                 `-pointsize ${size}`,
                 `-fill "${fill}"`,
                 `-stroke "${CONSTANTS.TITLE.STROKE}"`,
                 `-strokewidth ${CONSTANTS.TITLE.STROKE_WIDTH}`,
-                `-interline-spacing ${CONSTANTS.TITLE.LINE_SPACING}`,
+                // ★変更: 変数を使用
+                `-interline-spacing ${lineSpacing}`, 
                 `-annotate ${titlePos} "${options.title}"`,
                 `-strokewidth 0`,
                 `-annotate ${titlePos} "${options.title}"`
@@ -210,6 +213,8 @@ program
   .option('--title-size <number>', 'タイトルの文字サイズ', CONSTANTS.TITLE.SIZE)
   .option('--title-color <string>', 'タイトルの文字色', CONSTANTS.TITLE.FILL)
   .option('--title-offset-y <number>', 'タイトルの上下位置調整', 0)
+  // ★追加: 行間オプション
+  .option('--title-line-spacing <number>', 'タイトルの行間', CONSTANTS.TITLE.LINE_SPACING)
 
   // キャプション
   .option('--caption-size <number>', 'キャプションの文字サイズ', CONSTANTS.THUMB_CAPTION.SIZE)
